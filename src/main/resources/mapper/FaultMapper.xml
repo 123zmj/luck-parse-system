@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luck.parse.mapper.FaultMapper">
+
+    <sql id="selectFaultInfo">
+        select fault_code, fault_type, group_name, fault_bit, fault_value, fault_tab, is_warning
+        from fault_info
+    </sql>
+
+
+    <select id="selectFaultInfoList" resultType="com.luck.parse.domain.FaultInfo">
+        <include refid="selectFaultInfo"/>
+        <where>
+            <if test="faultCode != null  and faultCode != ''"> and fault_code like concat('%', #{faultCode}, '%')</if>
+            <if test="faultType != null  and faultType != ''"> and fault_type = #{faultType}</if>
+            <if test="groupName != null  and groupName != ''"> and group_name = #{groupName}</if>
+            <if test="faultBit != null  and faultBit != ''"> and fault_bit = #{faultBit}</if>
+            <if test="faultValue != null  and faultValue != ''"> and fault_value = #{faultValue}</if>
+            <if test="faultTab != null  and faultTab != ''"> and fault_tab = #{faultTab}</if>
+            <if test="isWarning != null "> and is_warning = #{isWarning}</if>
+        </where>
+    </select>
+</mapper>

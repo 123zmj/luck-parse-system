@@ -1,0 +1,7 @@
+Spring Boot Version: ${spring-boot.version}
+Spring Application Name: ${spring.application.name}
+
+
+解析系统运行成功啦
+
+
